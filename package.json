@@ -4,12 +4,20 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "JSONPath": "^0.11.2",
+    "jsonpath-plus": "^0.16.0",
+    "lodash": "^4.17.10",
     "neo4j-driver": "^1.6.1",
-    "npm": "^6.1.0"
+    "npm": "^6.1.0",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.1"
   }
 }
