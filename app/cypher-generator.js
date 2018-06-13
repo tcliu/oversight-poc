@@ -71,7 +71,7 @@ function fillTypes(obj, typeConfig) {
       })
     }
     // fill types from parent
-    const s = isObjectArray(obj) ? obj.map(o => {item: o}) : [{item: obj}]
+    const s = isObjectArray(obj) ? obj.map(o => ({item: o})) : [{item: obj}]
     while (s.length > 0) {
       const {item, attr} = s.pop()
       if (!item._type && attr) {
@@ -112,9 +112,9 @@ function fillRelationships(obj, relConfig) {
       })
     }
     // fill relationships from parent
-    const s = isObjectArray(obj) ? obj.map(o => {item: o}) : [{item: obj}]
+    const s = isObjectArray(obj) ? obj.map(o => ({item: o})) : [{item: obj}]
     while (s.length > 0) {
-      const {item, parent, attr} = s.pop()
+      const {item, parent} = s.pop()
       if (parent && !isPrimitive(item) && !item._PARENT && !hasRelationships(item)) {
         item._PARENT = parent
       }
@@ -141,10 +141,10 @@ function generateObjectTypeName(k, isCollection) {
 }
 
 function mergeObjects(obj, lines) {
-  const s = isObjectArray(obj) ? obj.map(o => {item: o}) : [{item: obj}]
+  const s = isObjectArray(obj) ? obj.map(o => ({item: o})) : [{item: obj}]
   // merge objects
   while (s.length > 0) {
-    const {item, attr} = s.shift()
+    const {item} = s.shift()
     if (item._type) {
       mergeObject(item, lines)
     }
@@ -161,7 +161,7 @@ function mergeObjects(obj, lines) {
 }
 
 function mergeRelationships(obj, lines) {
-  const s = isObjectArray(obj) ? obj.map(o => {item: o}) : [{item: obj}]
+  const s = isObjectArray(obj) ? obj.map(o => ({item: o})) : [{item: obj}]
   const walked = new Set()
   while (s.length > 0) {
     const {item} = s.shift()

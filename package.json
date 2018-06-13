@@ -15,7 +15,8 @@
     "lodash": "^4.17.10",
     "neo4j-driver": "^1.6.1",
     "npm": "^6.1.0",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "vis": "^4.21.0"
   },
   "devDependencies": {
     "typescript": "^2.9.1"

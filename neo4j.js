@@ -1,6 +1,6 @@
 const neo4j = require('neo4j-driver').v1
 const JSONPath = require('jsonpath-plus')
-const { generateCypher } = require('./app/cypher-generator.js')
+const { generateCypher, belongToProperty } = require('./app/cypher-generator.js')
 
 const persons = [{
   name: 'Peter',
@@ -33,8 +33,8 @@ const persons = [{
 
 const personConfig = {
   types: [
-    {path: ['$[*]', '$[*].friends[*]', '$[*].siblings[*]'], name: 'Person'},
-    {path: '$[*].friends[*].additionProps[*]', name: 'Property'}
+    {paths: ['$[*]', '$[*].friends[*]', '$[*].siblings[*]'], name: 'Person'},
+    {paths: '$[*].friends[*].additionProps[*]', name: 'Property'}
   ],
   rels: [{
     from: '$[*].friends[*].additionProps[*]', 
@@ -45,10 +45,11 @@ const personConfig = {
   mode: 'create'
 }
 
+/*
 modules.export = {
   data: persons,
   config: personConfig
-}
+}*/
 
 console.log( generateCypher(persons, personConfig) )
 
